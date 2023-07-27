@@ -1,11 +1,12 @@
 pipeline {
-    agent {'lable' 'JDK_17'}
+    agent { label 'JDK_17' }
     stages {
-        stage('VCS') {
+        stage('vcs') {
             steps {
                 git url: 'https://github.com/Sravyaws/spring-petclinic.git',
                     branch: 'declarative'
             }
+        }
         stage('build') {
             steps {
                 sh 'mvn clean package'
@@ -18,9 +19,10 @@ pipeline {
                 }
             }
         stage('publish test results') {
-            junit testResults: '**/TEST-*xml',
+            steps{
+                junit testResults: '**/TEST-*xml',
                   allowEmptyResults: false
+               }         
             }
-        }
-    }
-}
+        }       
+}        
