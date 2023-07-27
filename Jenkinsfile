@@ -1,7 +1,7 @@
 node('JDK_17') {
     stage('VCS') {
-        git url: https://github.com/Sravyaws/spring-petclinic.git,
-            branch: scripted
+        git url: 'https://github.com/Sravyaws/spring-petclinic.git',
+            branch: 'scripted'
     }
     stage('Buils') {
         sh 'mvn clean package'
